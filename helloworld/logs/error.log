@@ -1,0 +1,1 @@
+10:43:20.815 [Test worker] INFO  com.busanit501.helloworld.jdbcex.service.TodoService-todoVO : TodoVO(tno=null, title=샘플 작업 1126, dueDate=2024-11-26, finished=false)
