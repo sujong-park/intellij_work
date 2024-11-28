@@ -1,7 +1,6 @@
-package com.busanit501.helloworld.jdbcex.member;
+package com.busanit501.helloworld.food.member;
 
-import com.busanit501.helloworld.food.service.FoodService;
-import com.busanit501.helloworld.jdbcex.service.MemberService;
+import com.busanit501.helloworld.food.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -20,11 +19,11 @@ public class MemberDeleteController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long userNo = Long.valueOf(request.getParameter("userNo"));
+        String mid = String.valueOf(request.getParameter("mid"));
         //
         log.info("doPost FoodDeleteController 확인");
         try {
-            memberService.memberDelete(userNo);
+            memberService.memberDelete(mid);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

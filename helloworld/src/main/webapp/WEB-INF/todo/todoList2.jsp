@@ -16,7 +16,13 @@
   <h1>jdbcex의 todoList 목록화면. </h1>
     <a href="/todo/register2">글쓰기 폼이동</a>
   <h2>todoRead 하나 조회 더미 </h2>
-  <a href="/todo/read2?tno=5">하나 조회</a>
+  <h2>${loginInfo.mname}님 환영합니다.</h2>
+  임시 로그인한 유저 정보: ${loginInfo}
+  임시 조회한 게시글 번호 정보 : ${cookie.viewTodos.value}
+
+  <form action="/logout" method="post">
+    <button type="submit">로그아웃 테스트</button>
+  </form>
 
 
 

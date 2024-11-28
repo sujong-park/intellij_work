@@ -16,19 +16,17 @@
 <body>
 <h1>memberList 화면</h1>
 <h2>등록하기</h2>
-<a href="/member/register"><button>메뉴등록</button></a>
+<h2>${loginInfo.mname}님 환영합니다.</h2>
 
+
+<a href="/member/register"><button>메뉴등록</button></a>
 <ul>
     <c:forEach var="dto" items="${memberList}">
         <li>
-            <a href="/member/read?userNo=${dto.userNo}">
-                <span>${dto.userNo}</span>
-                <span>${dto.userId}</span>
-                <span>${dto.userPassword}</span>
-                <span>${dto.userName}</span>
-                <span>${dto.userEmail}</span>
-                <span>${dto.userPhone}</span>
-                <span>${dto.dueDate}</span>
+            <a href="/member/read?mid=${dto.mid}">
+                <span>${dto.mid}</span>
+                <span>${dto.mpw}</span>
+                <span>${dto.mname}</span>
             </a>
         </li>
     </c:forEach>

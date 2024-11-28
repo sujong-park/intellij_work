@@ -1,108 +1,67 @@
 package com.busanit501.helloworld.jdbcex.dao;
 
-import com.busanit501.helloworld.food.dao.ConnectionUtil;
-import com.busanit501.helloworld.food.vo.FoodVO;
 import com.busanit501.helloworld.jdbcex.vo.MemberVO;
-import com.busanit501.helloworld.jdbcex.vo.TodoVO;
 import lombok.Cleanup;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class MemberDAO {
-    // 전체 멤버 조회
-    public List<MemberVO> selectMembersAll() throws SQLException {
-        String sql = "select * from tbl_member";
+    // 화면으로부터 전달받은 ,
+    // String mid, String mpw
+    // 예시 ) mid: lsy, mpw: 1234
+    public MemberVO getMemberWithMpw(String mid, String mpw) throws SQLException {
+        String query = "select * from tbl_member where mid=? and mpw=?";
+        // 결과 데이터를 담아둘 임시 박스 MemberVO
+        MemberVO memberVO = null;
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
-        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, mid);
+        preparedStatement.setString(2, mpw);
         @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
-
-        List<MemberVO> memberList = new ArrayList<>();
-        while (resultSet.next()) {
-            MemberVO memberVO = MemberVO.builder()
-                    .userNo(resultSet.getLong("userNo"))
-                    .userId(resultSet.getString("userId"))
-                    .userPassword(resultSet.getString("userPassword"))
-                    .userName(resultSet.getString("userName"))
-                    .userEmail(resultSet.getString("userEmail"))
-                    .userPhone(resultSet.getString("userPhone"))
-                    .dueDate(resultSet.getDate("dueDate").toLocalDate())
-                    .build();
-            memberList.add(memberVO);
-        }
-        return memberList;
-    }
-
-    // 멤버 조회
-    public MemberVO selectMember(Long userNo) throws SQLException {
-        String sql = "select * from tbl_member where userNo = ?";
-        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
-        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setLong(1, userNo);
-        @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
-
         resultSet.next();
-        MemberVO memberVO = MemberVO.builder()
-                .userNo(resultSet.getLong("userNo"))
-                .userId(resultSet.getString("userId"))
-                .userPassword(resultSet.getString("userPassword"))
-                .userName(resultSet.getString("userName"))
-                .userEmail(resultSet.getString("userEmail"))
-                .userPhone(resultSet.getString("userPhone"))
-                .dueDate(resultSet.getDate("dueDate").toLocalDate())
+        memberVO = MemberVO.builder()
+                .mid(resultSet.getString("mid"))
+                .mpw(resultSet.getString("mpw"))
+                .mname(resultSet.getString("mname"))
                 .build();
-        return (memberVO);
+
+        return memberVO;
     }
 
-    // 멤버 등록
-    public void insertMember(MemberVO memberVO) throws SQLException {
-        String sql = "insert into tbl_member (userId, userPassword, userName, userEmail, userPhone, dueDate) " +
-                "values (?, ?, ?, ?, ?, ?)";
+    public void updateUuid(String mid, String uuid) throws SQLException {
+        String query = "update tbl_member set uuid=? where mid=?";
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
-        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        preparedStatement.setString(1, memberVO.getUserId());
-        preparedStatement.setString(2, memberVO.getUserPassword());
-        preparedStatement.setString(3, memberVO.getUserName());
-        preparedStatement.setString(4, memberVO.getUserEmail());
-        preparedStatement.setString(5, memberVO.getUserPhone());
-        preparedStatement.setDate(6, Date.valueOf(memberVO.getDueDate()));
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, uuid);
+        preparedStatement.setString(2, mid);
         preparedStatement.executeUpdate();
-    }
+    } //
 
-    // 멤버 수정
-    public void updateMember(MemberVO memberVO) throws SQLException {
-        String sql = "update tbl_member set userId=?, userPassword=?, userName=?, userEmail=?, userPhone=?, dueDate=?" +
-                " where userNo = ?";
+    public MemberVO getMemberWithUuid(String uuid) throws SQLException {
+        String query = "select * from tbl_member where uuid=?";
+        // 결과 데이터를 담아둘 임시 박스 MemberVO
+        MemberVO memberVO = null;
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
-        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, uuid);
+        @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        memberVO = MemberVO.builder()
+                .mid(resultSet.getString("mid"))
+                .mpw(resultSet.getString("mpw"))
+                .mname(resultSet.getString("mname"))
+                .uuid(resultSet.getString("uuid"))
+                .build();
 
-        preparedStatement.setString(1, memberVO.getUserId());
-        preparedStatement.setString(2, memberVO.getUserPassword());
-        preparedStatement.setString(3, memberVO.getUserName());
-        preparedStatement.setString(4, memberVO.getUserEmail());
-        preparedStatement.setString(5, memberVO.getUserPhone());
-        preparedStatement.setDate(6, Date.valueOf(memberVO.getDueDate()));
-        preparedStatement.setLong(7, memberVO.getUserNo());
-        preparedStatement.executeUpdate();
-
+        return memberVO;
     }
 
-    // 멤버 삭제
-    public void deleteMember(Long userNo) throws SQLException {
-        String sql = "delete from tbl_member where userNo = ?";
 
-        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
-        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-        preparedStatement.setLong(1, userNo);
-        preparedStatement.executeUpdate();
-
-    }
-
-} //class
-
+}

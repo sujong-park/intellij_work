@@ -1,9 +1,7 @@
-package com.busanit501.helloworld.jdbcex.member;
+package com.busanit501.helloworld.food.member;
 
-import com.busanit501.helloworld.food.dto.FoodDTO;
-import com.busanit501.helloworld.food.service.FoodService;
-import com.busanit501.helloworld.jdbcex.dto.MemberDTO;
-import com.busanit501.helloworld.jdbcex.service.MemberService;
+import com.busanit501.helloworld.food.dto.MemberDTO;
+import com.busanit501.helloworld.food.service.MemberService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,12 +31,9 @@ public class MemberRegController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MemberDTO memberDTO = MemberDTO.builder()
-                .userId(request.getParameter("userId"))
-                .userPassword(request.getParameter("userPassword"))
-                .userName(request.getParameter("userName"))
-                .userEmail(request.getParameter("userEmail"))
-                .userPhone(request.getParameter("userPhone"))
-                .dueDate(LocalDate.parse(request.getParameter("dueDate"),dateTimeFormatter))
+                .mid(request.getParameter("mid"))
+                .mpw(request.getParameter("mpw"))
+                .mname(request.getParameter("mname"))
                 .build();
         try {
             memberService.memberRegister(memberDTO);

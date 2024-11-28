@@ -12,25 +12,16 @@
 </head>
 <body>
     <h1>tno 수정화면</h1>
-    <form action="/member/update?userNo=${dto.userNo}" method="post">
+    <form action="/member/update?mid=${dto.mid}" method="post">
     <div>
-        <input type="text" name="userId" value="${dto.userId}">
+        <input type="text" name="mid" value="${dto.mid}">
     </div>
     <div>
-        <input type="text" name="userPassword" value="${dto.userPassword}">
+        <input type="text" name="mpw" value="${dto.mpw}">
     </div>
     <div>
-        <input type="text" name="userName" value="${dto.userName}">
+        <input type="text" name="mname" value="${dto.mname}">
     </div>
-        <div>
-            <input type="text" name="userEmail" value="${dto.userEmail}">
-        </div>
-        <div>
-            <input type="text" name="userPhone" value="${dto.userPhone}">
-        </div>
-        <div>
-            <input type="date" name="dueDate" value="${dto.dueDate}">
-        </div>
 
 
     <div>
@@ -39,7 +30,7 @@
     </div>
     </form>
 
-    <form action="/member/delete?userNo=${dto.userNo}" method="post">
+    <form action="/member/delete?mid=${dto.mid}" method="post">
         <button type="submit">삭제하기</button>
     </form>
 </body>

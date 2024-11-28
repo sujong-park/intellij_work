@@ -1,6 +1,8 @@
-package com.busanit501.helloworld.jdbcex.vo;
+package com.busanit501.helloworld.food.vo;
 
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Getter
 @ToString
@@ -12,5 +14,4 @@ public class MemberVO {
     private String mid;
     private String mpw;
     private String mname;
-    private String uuid;
 }

@@ -1,14 +1,11 @@
-package com.busanit501.helloworld.dao.jdbcex;
+package com.busanit501.helloworld.food;
 
-import com.busanit501.helloworld.jdbcex.dto.MemberDTO;
-import com.busanit501.helloworld.jdbcex.dto.TodoDTO;
-import com.busanit501.helloworld.jdbcex.service.MemberService;
-import com.busanit501.helloworld.jdbcex.service.TodoService;
+import com.busanit501.helloworld.food.dto.MemberDTO;
+import com.busanit501.helloworld.food.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Member;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -34,7 +31,7 @@ public class MemberServiceTest {
     // 멤버 조회
     @Test
     public void testSelectOne() throws SQLException {
-        MemberDTO memberDTO = memberService.memberSelect(4L);
+        MemberDTO memberDTO = memberService.memberSelect("lsy");
         log.info("TodoList 하나 조회" + memberDTO);
     }
 
@@ -42,12 +39,9 @@ public class MemberServiceTest {
     @Test
     public void testInsert() throws SQLException {
         MemberDTO memberDTO = MemberDTO.builder()
-                .userId("샘플 작업 service")
-                .userPassword("123")
-                .userName("서비스 샘플")
-                .userEmail("12")
-                .userPhone("564684623")
-                .dueDate(LocalDate.now())
+                .mid("servicetest3")
+                .mpw("123")
+                .mname("Service테스트2")
                 .build();
         memberService.memberRegister(memberDTO);
     }
@@ -55,15 +49,10 @@ public class MemberServiceTest {
     // 멤버 수정
     @Test
     public void testUpdate() throws SQLException {
-        //
         MemberDTO memberDTO = MemberDTO.builder()
-                .userNo(3L)
-                .userId("update")
-                .userPassword("123")
-                .userName("수정된 내용입니다.")
-                .userEmail("")
-                .userPhone("")
-                .dueDate(LocalDate.now())
+                .mid("servicetest2")
+                .mpw("123")
+                .mname("Service수정")
                 .build();
         memberService.memberUpdate(memberDTO);
     }
@@ -71,7 +60,7 @@ public class MemberServiceTest {
     // 멤버 삭제
     @Test
     public void testDelete() throws SQLException {
-        memberService.memberDelete(4L);
+        memberService.memberDelete("servivcetest3");
     }
 
 

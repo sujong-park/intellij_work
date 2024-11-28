@@ -13,29 +13,18 @@
 <body>
 <h1>member 상세페이지</h1>
 <div>
-    <input type="text" name="userNo" value="${dto.userNo}">
+    <input type="text" name="mid" value="${dto.mid}">
 </div>
 <div>
-    <input type="text" name="userId" value="${dto.userId}">
+    <input type="text" name="mpw" value="${dto.mpw}">
 </div>
 <div>
-    <input type="text" name="userPassword" value="${dto.userPassword}">
-</div>
-<div>
-    <input type="text" name="userName" value="${dto.userName}">
-</div>
-<div>
-    <input type="text" name="userEmail" value="${dto.userEmail}">
-</div>
-<div>
-    <input type="text" name="userPhone" value="${dto.userPhone}">
-</div>
-<div>
-    <input type="date" name="dueDate" value="${dto.dueDate}">
+    <input type="text" name="mname" value="${dto.mname}">
 </div>
 
+
 <div>
-    <a href="/member/update?userNo=${dto.userNo}"><button>수정</button></a>
+    <a href="/member/update?mid=${dto.mid}"><button>수정</button></a>
     <a href="/member/list"><button>목록</button></a>
 </div>
 

@@ -1,9 +1,7 @@
-package com.busanit501.helloworld.jdbcex.member;
+package com.busanit501.helloworld.food.member;
 
-import com.busanit501.helloworld.food.dto.FoodDTO;
-import com.busanit501.helloworld.food.service.FoodService;
-import com.busanit501.helloworld.jdbcex.dto.MemberDTO;
-import com.busanit501.helloworld.jdbcex.service.MemberService;
+import com.busanit501.helloworld.food.dto.MemberDTO;
+import com.busanit501.helloworld.food.service.MemberService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +20,8 @@ public class MemberReadController extends HttpServlet {
 
         try {
             // 클릭한 게시글 번호를 가지고 와야함.
-            Long userNo = Long.parseLong(request.getParameter("userNo"));
-            MemberDTO memberDTO = memberService.memberSelect(userNo);
+            String mid = request.getParameter("mid");
+            MemberDTO memberDTO = memberService.memberSelect(mid);
             // 화면에 전달하기.
             request.setAttribute("dto", memberDTO);
             request.getRequestDispatcher("/WEB-INF/member/memberRead.jsp")

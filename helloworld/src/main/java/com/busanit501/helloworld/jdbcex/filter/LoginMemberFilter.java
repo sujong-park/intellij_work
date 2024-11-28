@@ -14,9 +14,9 @@ import java.io.IOException;
 // 한글로 입력된 내용을, UTF8로 변환해서 보내기.
 // 필터, 서버에 작업을 실행하기전에, 먼저 검사한다.
 // 유효성 체크.
-@WebFilter(urlPatterns = {"/todo/*"})
+@WebFilter(urlPatterns = {"/member/*"})
 @Log4j2
-public class LoginFilter implements Filter {
+public class LoginMemberFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -43,13 +43,6 @@ public class LoginFilter implements Filter {
             response.sendRedirect("/login");
             return;
         }
-
-        // 자동로그인 , 구조
-//        if (cookie == null) {
-//            response.sendRedirect("/login");
-//            return;
-//        }
-
         //임시로, 최초도 아니고, 로그인 처리가 되었다면, 그러면,
         // 정상적으로 접근하는 페이지로 이동 시켜 줄게.
         if(session.getAttribute("loginInfo") != null) {

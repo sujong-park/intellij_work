@@ -1,9 +1,7 @@
-package com.busanit501.helloworld.jdbcex.member;
+package com.busanit501.helloworld.food.member;
 
-import com.busanit501.helloworld.food.dto.FoodDTO;
-import com.busanit501.helloworld.food.service.FoodService;
-import com.busanit501.helloworld.jdbcex.dto.MemberDTO;
-import com.busanit501.helloworld.jdbcex.service.MemberService;
+import com.busanit501.helloworld.food.dto.MemberDTO;
+import com.busanit501.helloworld.food.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -25,8 +23,8 @@ public class MemberUpdateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Long userNo = Long.parseLong(request.getParameter("userNo"));
-            MemberDTO memberDTO = memberService.memberSelect(userNo);
+            String mid = request.getParameter("mid");
+            MemberDTO memberDTO = memberService.memberSelect(mid);
 
             request.setAttribute("dto", memberDTO);
             request.getRequestDispatcher("/WEB-INF/member/memberUpdate.jsp")
@@ -41,13 +39,9 @@ public class MemberUpdateController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         MemberDTO memberDTO = MemberDTO.builder()
-                .userNo(Long.valueOf(request.getParameter("userNo")))
-                .userId(request.getParameter("userId"))
-                .userPassword(request.getParameter("userPassword"))
-                .userName(request.getParameter("userName"))
-                .userEmail(request.getParameter("userEmail"))
-                .userPhone(request.getParameter("userPhone"))
-                .dueDate(LocalDate.parse(request.getParameter("dueDate"),DATE_TIME_FORMATTER))
+                .mid(request.getParameter("mid"))
+                .mpw(request.getParameter("mpw"))
+                .mname(request.getParameter("mname"))
                 .build();
         log.info("memberDTO 수정된 내용: " + memberDTO);
         try {

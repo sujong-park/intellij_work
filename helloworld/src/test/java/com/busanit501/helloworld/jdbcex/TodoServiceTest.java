@@ -1,4 +1,4 @@
-package com.busanit501.helloworld.dao.jdbcex;
+package com.busanit501.helloworld.jdbcex;
 
 import com.busanit501.helloworld.jdbcex.dto.TodoDTO;
 import com.busanit501.helloworld.jdbcex.service.TodoService;

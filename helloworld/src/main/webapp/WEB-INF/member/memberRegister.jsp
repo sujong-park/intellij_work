@@ -14,22 +14,13 @@
   <h1>foodRegister 화면</h1>
   <form action="/member/register" method="post">
       <div>
-          <input type="text" name="userId" placeholder="아이디 입력">
+          <input type="text" name="mid" placeholder="아이디 입력">
       </div>
       <div>
-          <input type="text" name="userPassword" placeholder="비밀번호 입력">
+          <input type="text" name="mpw" placeholder="비밀번호 입력">
       </div>
       <div>
-          <input type="text" name="userName" placeholder="이름 입력">
-      </div>
-      <div>
-          <input type="text" name="userEmail" placeholder="이메일 입력">
-      </div>
-      <div>
-          <input type="text" name="userPhone" placeholder="전화번호 입력">
-      </div>
-      <div>
-          <input type="date" name="dueDate">
+          <input type="text" name="mname" placeholder="이름 입력">
       </div>
     <button type="reset">초기화</button>
     <button type="submit">등록</button>

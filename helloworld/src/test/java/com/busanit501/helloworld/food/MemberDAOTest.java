@@ -1,7 +1,7 @@
-package com.busanit501.helloworld.dao.jdbcex;
+package com.busanit501.helloworld.food;
 
-import com.busanit501.helloworld.jdbcex.dao.MemberDAO;
-import com.busanit501.helloworld.jdbcex.vo.MemberVO;
+import com.busanit501.helloworld.food.dao.MemberDAO;
+import com.busanit501.helloworld.food.vo.MemberVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +27,8 @@ public class MemberDAOTest {
     // 멤버 조회
     @Test
     public void testSelectMember() throws SQLException {
-        Long userNo = 3L;
-        MemberVO memberVO = memberDAO.selectMember(userNo);
+        String mid = "lsy";
+        MemberVO memberVO = memberDAO.selectMember(mid);
         System.out.println(memberVO);
     }
 
@@ -36,12 +36,9 @@ public class MemberDAOTest {
     @Test
     public void testInsertMember() throws Exception {
         MemberVO memberVO = MemberVO.builder()
-                .userId("sample")
-                .userPassword("123")
-                .userName("샘플 디비 작성 테스트")
-                .userEmail("sample@gmail.com")
-                .userPhone("01012345678")
-                .dueDate(LocalDate.of(2024, 12, 31))
+                .mid("daotest3")
+                .mpw("1234")
+                .mname("DAO테스트3")
                 .build();
         memberDAO.insertMember(memberVO);
     }
@@ -52,13 +49,9 @@ public class MemberDAOTest {
         // 실제 작업은 내용을 화면에서 받아오는 대신,
         // 하드 코딩으로 값을 더미로 테스트.
         MemberVO memberVO = MemberVO.builder()
-                .userNo(1L)
-                .userId("sample1")
-                .userPassword("sample1")
-                .userName("수정 테스트")
-                .userEmail("sample@gmail.com")
-                .userPhone("01012345678")
-                .dueDate(LocalDate.of(2024, 12, 31))
+                .mid("daotest2")
+                .mpw("1234")
+                .mname("DAO수정")
                 .build();
         memberDAO.updateMember(memberVO);
     }
@@ -66,7 +59,8 @@ public class MemberDAOTest {
     // 멤버 삭제
     @Test
     public void testDeleteTest() throws SQLException {
-        Long userNo = 2L;
-        memberDAO.deleteMember(userNo);
+        String mid = "daotest3";
+        memberDAO.deleteMember(mid);
     }
+
 }
