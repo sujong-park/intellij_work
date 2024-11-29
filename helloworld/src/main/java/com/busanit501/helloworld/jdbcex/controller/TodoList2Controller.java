@@ -5,6 +5,7 @@ import com.busanit501.helloworld.jdbcex.dto.TodoDTO;
 
 import lombok.extern.log4j.Log4j2;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,10 @@ public class TodoList2Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // TestListener에 등록된 특정 변수에 접근
+        ServletContext context = request.getServletContext();
+        String result = (String) context.getAttribute("appTestName");
+        log.info("TodoList2Controller ServletContext : 값 조회 확인중 : "+result);
         //
         log.info("doGet TodoList2Controller 확인");
         try {
