@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class MemberDAOTest {
     private MemberDAO memberDAO;
@@ -61,6 +62,27 @@ public class MemberDAOTest {
     public void testDeleteTest() throws SQLException {
         String mid = "daotest3";
         memberDAO.deleteMember(mid);
+    }
+
+    // 로그인 유효성 검사
+    @Test
+    public void TestGetMemberWithMpw() throws SQLException {
+        String mid = "daotest1";
+        String mpw = "1234";
+        MemberVO memberVO = memberDAO.getMemberWithMpw(mid,mpw);
+    }
+
+    // 회원 uuid 생성
+    @Test
+    public void TestUpdateUuid() throws SQLException {
+        String uuid = UUID.randomUUID().toString();
+        memberDAO.updateUuid("daotest1", uuid);
+    }
+
+    // uuid 확인 및 정보 가져오기
+    @Test
+    public void TestGetMemberWithUuid() throws SQLException {
+        MemberVO memberVO = memberDAO.getMemberWithUuid("8ebc11c0-ed47-42ad-a073-bacf7298543d");
     }
 
 }

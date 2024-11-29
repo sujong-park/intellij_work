@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 public class MemberServiceTest {
@@ -63,5 +64,18 @@ public class MemberServiceTest {
         memberService.memberDelete("servivcetest3");
     }
 
+    // 회원 uuid 생성
+    @Test
+    public void TestUpdateUuid() throws SQLException {
+        String uuid = UUID.randomUUID().toString();
+        memberService.updateUuid("daotest2", uuid);
+    }
 
+    // uuid 확인 및 정보 가져오기
+    @Test
+    public void TestGetMemberWithUuidSearch() throws SQLException {
+        // 각자 테이블의 유저의uuid를 직접 복사해서 붙여넣기.
+        // 각각 전부 다 달라요.
+        memberService.getMemberWithUuidService("25a5e7c2-3c92-47b2-a886-392164f07e77");
+    }
 }

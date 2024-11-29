@@ -61,6 +61,30 @@ public enum MemberService {
     public void memberDelete(String mid) throws SQLException {
         memberDAO.deleteMember(mid);
     }
+
+
+    // 로그인 유효성 검사
+    public MemberDTO login(String mid, String mpw) throws SQLException {
+        MemberVO memberVO = memberDAO.getMemberWithMpw(mid,mpw);
+        MemberDTO memberDTO = modelMapper.map(memberVO, MemberDTO.class);
+        return memberDTO;
+    }
+
+    // 회원 uuid 생성
+    public void updateUuid(String mid, String uuid) throws SQLException {
+        memberDAO.updateUuid(mid,uuid);
+    }
+
+    // uuid 확인 및 정보 가져오기
+    public MemberDTO getMemberWithUuidService(String uuid) throws SQLException {
+        MemberVO memberVO= memberDAO.getMemberWithUuid(uuid);
+        MemberDTO memberDTO = modelMapper.map(memberVO, MemberDTO.class);
+        return memberDTO;
+    }
+
+
+
+
 }
 
 

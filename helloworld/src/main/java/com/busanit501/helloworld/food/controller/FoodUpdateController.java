@@ -27,7 +27,7 @@ public class FoodUpdateController extends HttpServlet {
             FoodDTO foodDTO = foodService.getFood(fno);
 
             request.setAttribute("dto", foodDTO);
-            request.getRequestDispatcher("/WEB-INF/food/memberUpdate.jsp")
+            request.getRequestDispatcher("/WEB-INF/food/foodUpdate.jsp")
                     .forward(request, response);
         } catch (SQLException e) {
             throw new RuntimeException(e);

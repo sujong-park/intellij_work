@@ -24,7 +24,7 @@ public class FoodRegController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 화면전달
-        request.getRequestDispatcher("/WEB-INF/food/memberRegister.jsp")
+        request.getRequestDispatcher("/WEB-INF/food/foodRegister.jsp")
                 .forward(request, response);
     }
 
